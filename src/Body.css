@@ -1,0 +1,7 @@
+.body{
+    flex:0.8;
+    height: 100vh;
+    background-color: burlywood;
+    color:white;
+    padding:30px;
+}
