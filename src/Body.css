@@ -1,7 +1,19 @@
 .body{
-    flex:0.8;
+    flex:0.95;
     height: 100vh;
     background-color: burlywood;
     color:white;
     padding:30px;
 }
+.header{
+    background-color: cadetblue;
+    text-align: center;
+    size: auto;
+}
+
+#tabell td{
+    padding: 26px;    
+}
+/* #tabell tr:hover{
+    background-color: #ddd;
+} */
