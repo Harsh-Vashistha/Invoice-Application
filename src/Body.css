@@ -14,6 +14,13 @@
 #tabell td{
     padding: 26px;    
 }
+
+.body-container{
+    width: 95%;
+}
+#customer-fields{
+    text-align: right;
+}
 /* #tabell tr:hover{
     background-color: #ddd;
 } */
