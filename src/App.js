@@ -1,4 +1,3 @@
-//state management using context api
 
 
 import React from 'react';

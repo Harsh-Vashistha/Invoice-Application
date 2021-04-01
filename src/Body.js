@@ -13,7 +13,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
+import {StyledTableCell} from './CustomComponents'
 
 
 
@@ -25,11 +25,6 @@ import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
   }))(Paper);
   
 
-  const useStyles = makeStyles({
-    table: {
-      minWidth: 700,
-    },
-  });
 
 
 
@@ -40,9 +35,9 @@ import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
           super(props);
      
           this.state={
-           company_details:"",
-           customer_id:"",
-           invoice_number:"",
+           company_details:"company_details",
+           customer_id:"customer_id",
+           invoice_number:"invoice_number",
            date:"",
            page:'tabell',
            rows:[],
@@ -90,12 +85,12 @@ import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
              const newState={
                ...state,
                serial_no:state.serial_no+1,
-               total_price:parseInt(this.state.price,10) * parseInt(this.state.no_items,10)-((this.state.tax*parseInt(this.state.price,10) * parseInt(this.state.no_items,10))/100),
-               TOTAL_PRICE:state.TOTAL_PRICE+parseInt(this.state.price,10) * parseInt(this.state.no_items,10)-((this.state.tax*parseInt(this.state.price,10) * parseInt(this.state.no_items,10))/100)
+               total_price:parseInt(this.state.price,10) * parseInt(this.state.no_items,10)+((this.state.tax*parseInt(this.state.price,10) * parseInt(this.state.no_items,10))*0.01),
+               TOTAL_PRICE:state.TOTAL_PRICE+(parseInt(this.state.price,10) * parseInt(this.state.no_items,10))+((this.state.tax*parseInt(this.state.price,10) * parseInt(this.state.no_items,10))*0.01)
              }
             return newState;
            }
-           console.log(this.state.tax,"tax")
+           console.log(this.state,"tax")
           
            
             this.setState(updateState);
@@ -127,16 +122,16 @@ import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
             {(this.state.page==='tabell')&& <input type="text" className="textbox" name="company_details" value={this.state.company_details} onChange={this.handleChange}></input>}
             </div>
             <div id="customer-fields" align="right" style={{flex:0.8}}>
-            {(this.state.page==='tabell')&&<h5>customer_details</h5>}
-           customer_id: { (this.state.page==='tabell')&& <input type="text" className="textbox" name="customer_id" value={this.state.customer_id} onChange={this.handleChange}></input>}
-           <br/>
-           <br/>
-           invoice_number:{ (this.state.page==='tabell')&& <input type="text" className="textbox" name="invoice_number" value={this.state.invoice_number} onChange={this.handleChange}></input>}
-           <br/>
-           <br/>
-           date:{ (this.state.page==='tabell')&& <input type="text" className="textbox" name="date" value={this.state.date} onChange={this.handleChange}></input>}
-           <br/>
-           <br/>
+              {(this.state.page==='tabell')&&<h5>customer_details</h5>}
+              { (this.state.page==='tabell')&& <input type="text" className="textbox" name="customer_id" value={this.state.customer_id} onChange={this.handleChange}></input>}
+                <br/>
+                <br/>
+              { (this.state.page==='tabell')&& <input type="text" className="textbox" name="invoice_number" value={this.state.invoice_number} onChange={this.handleChange}></input>}
+                <br/>
+                <br/>
+              { (this.state.page==='tabell')&& <input type="text" className="textbox" name="date" value={this.state.date} onChange={this.handleChange}></input>}
+                <br/>
+                <br/>
             </div>
             </div>
 
@@ -153,8 +148,8 @@ import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
                        <StyledTableCell>SERIAL No</StyledTableCell>
                        <StyledTableCell align="right">PRODUCT NAME</StyledTableCell>
                        <StyledTableCell align="right">NO Of ITEMS</StyledTableCell>
-                       <StyledTableCell align="right">TAX</StyledTableCell>
                        <StyledTableCell align="right">PRICE</StyledTableCell>
+                       <StyledTableCell align="right">TAX</StyledTableCell>
                        <StyledTableCell align="right">TOTAL_PRICE</StyledTableCell>
                      </TableRow>
                    </TableHead>
@@ -176,10 +171,10 @@ import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
                    
                  </Table>
                </TableContainer>
-                  <input type="text" name="produts" value={this.state.products} onChange={(e)=>{this.setState({products:e.target.value})}}></input>
-                  <input type="number" name="no_items" value={this.state.no_items} onChange={(e)=>{this.setState({no_items:e.target.value})}}></input>
-                  <input type="number" name="price" value={this.state.price} onChange={(e)=>{this.setState({price:e.target.value})}} ></input>
-                  <input type="number" name="tax" value={this.state.tax} onChange={(e)=>{this.setState({tax:e.target.value})}} ></input>
+                  <input type="text" name="produts" placeholder="product name" value={this.state.products} onChange={(e)=>{this.setState({products:e.target.value})}}></input>
+                  <input type="number" name="no_items" placeholder="no of items" value={this.state.no_items} onChange={(e)=>{this.setState({no_items:e.target.value})}}></input>
+                  <input type="number" name="price" placeholder="price" value={this.state.price} onChange={(e)=>{this.setState({price:e.target.value})}} ></input>
+                  <input type="number" name="tax" placeholder="tax" value={this.state.tax} onChange={(e)=>{this.setState({tax:e.target.value})}} ></input>
                   <button onClick={this.updaterow}>Add Item</button>
                </Paper>
               )}
