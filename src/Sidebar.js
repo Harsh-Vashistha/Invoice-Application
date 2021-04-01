@@ -1,18 +1,32 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { Typography, withStyles } from '@material-ui/core';
+
 import './Sidebar.css';
 
-
+const typography=withStyles(themem=>({
+    root: {
+        color:"red"
+      }
+}))(Typography)
 
 function Sidebar(){
     return(
-        <div className="sidebar">
-            <Button variant='text' >
-                Generate Invoice
-            </Button>
-            <Button variant='text'>
-                View User Profile
-            </Button>
+        <div className="sidebar"  >
+            <Typography variant='text' color="black">
+                Made by:
+            </Typography>
+            <br/>
+            <br/>
+            <Typography variant={"h5"} >
+               Harsh Vashistha
+            </Typography >
+            <Typography variant={"h5"}>
+               Yash Singh
+            </Typography>
+            <Typography variant={"h5"}>
+               Kartike Mangal
+            </Typography>
+            
         </div>
     )
 }

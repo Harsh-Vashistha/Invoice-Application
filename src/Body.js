@@ -52,6 +52,7 @@ import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
            price:0,
            tax:0,
            total_price:0,
+           TOTAL_PRICE:0,
         };
         this.layoutref=React.createRef();
         this.downl=this.downl.bind(this);
@@ -84,14 +85,17 @@ import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
              tax:parseInt(this.state.tax,10),
            }
 
+           
            function updateState(state,props){
              const newState={
                ...state,
                serial_no:state.serial_no+1,
-               total_price:parseInt(this.state.price,10) * parseInt(this.state.no_items,10)
+               total_price:parseInt(this.state.price,10) * parseInt(this.state.no_items,10)-((this.state.tax*parseInt(this.state.price,10) * parseInt(this.state.no_items,10))/100),
+               TOTAL_PRICE:state.TOTAL_PRICE+parseInt(this.state.price,10) * parseInt(this.state.no_items,10)-((this.state.tax*parseInt(this.state.price,10) * parseInt(this.state.no_items,10))/100)
              }
             return newState;
            }
+           console.log(this.state.tax,"tax")
           
            
             this.setState(updateState);
@@ -118,18 +122,20 @@ import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
         return (
           <div className="body-container">
             <div style={{display:"flex"}}>
-            <div id="company-fields">
+            <div id="company-fields" style={{flex:0.2}}>
             {(this.state.page==='tabell')&& <h5>company_details</h5>}
-           { (this.state.page==='tabell')&& <input type="text" name="company_details" value={this.state.company_details} onChange={this.handleChange}></input>}
+            {(this.state.page==='tabell')&& <input type="text" className="textbox" name="company_details" value={this.state.company_details} onChange={this.handleChange}></input>}
             </div>
-
             <div id="customer-fields" align="right" style={{flex:0.8}}>
             {(this.state.page==='tabell')&&<h5>customer_details</h5>}
-           customer_id: { (this.state.page==='tabell')&& <input type="text" name="customer_id" value={this.state.customer_id} onChange={this.handleChange}></input>}
+           customer_id: { (this.state.page==='tabell')&& <input type="text" className="textbox" name="customer_id" value={this.state.customer_id} onChange={this.handleChange}></input>}
            <br/>
-           invoice_number:{ (this.state.page==='tabell')&& <input type="text" name="invoice_number" value={this.state.invoice_number} onChange={this.handleChange}></input>}
            <br/>
-           date:{ (this.state.page==='tabell')&& <input type="text" name="date" value={this.state.date} onChange={this.handleChange}></input>}
+           invoice_number:{ (this.state.page==='tabell')&& <input type="text" className="textbox" name="invoice_number" value={this.state.invoice_number} onChange={this.handleChange}></input>}
+           <br/>
+           <br/>
+           date:{ (this.state.page==='tabell')&& <input type="text" className="textbox" name="date" value={this.state.date} onChange={this.handleChange}></input>}
+           <br/>
            <br/>
             </div>
             </div>

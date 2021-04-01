@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './Body.css'
 
-import Header from './Header.js';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 
@@ -9,8 +8,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import {StyledTableRow,button,StyledTableCell} from './CustomComponents'
+import { withStyles} from '@material-ui/core/styles';
+import {StyledTableCell} from './CustomComponents'
+import { ThemeProvider } from 'react-bootstrap';
 
 
 
@@ -20,8 +20,10 @@ const StyledPaper = withStyles((theme) => ({
         width:'95%'
     }
   }))(Paper);
+  
 
 export default class Pdfdata extends Component {
+    
     render() {
     const {company_details,date,invoice_number,customer_id}=this.props.data2
     //const{rows}=this.props.data1
@@ -46,11 +48,7 @@ export default class Pdfdata extends Component {
                     </div>
                 
                 <div className="invoice-tabel">
-
                 <StyledPaper>
-                   
-            
-              
                     <Paper>
                     <TableContainer component={Paper}>
                     <Table  aria-label="customized table">
@@ -83,6 +81,9 @@ export default class Pdfdata extends Component {
                    
                  </Table>
                </TableContainer>
+               <div>
+                   TOTAL_PRICE:{this.props.data1.TOTAL_PRICE}
+               </div>
                </Paper>
              
             </StyledPaper>
